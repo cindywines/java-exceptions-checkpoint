@@ -10,5 +10,7 @@ public class ZipCodeProcessor {
     }
 
     // write your code below here...
-
+    public String process(String str) {
+        return "";
+    }
 }

@@ -3,13 +3,11 @@ package com.ifs;
 public class MainApplication {
     public static void main(String[] args) {
         Verifier verifier = new Verifier();
+        ZipCodeProcessor processor = new ZipCodeProcessor(verifier);
 
-        verifier.verify("80302");         // doesn't throw anything
-
-        verifier.verify("232323232323");  // throws java.lang.Exception "ERRCODE 21: INPUT_TOO_LONG"
-
-        verifier.verify("232");           // throws java.lang.Exception "ERRCODE 22: INPUT_TOO_SHORT"
-
-        verifier.verify("10012");         // throws java.lang.Exception "ERRCODE 27: NO_SERVICE"
+        processor.process("80302");  // => "Thank you!  Your package will arrive soon."
+        processor.process("2345678"); // => "The zip code you entered was the wrong length."
+        processor.process("321");    // => "The zip code you entered was the wrong length."
+        processor.process("12234");   // => "We're sorry, but the zip code you entered is out of our range."
     }
 }
